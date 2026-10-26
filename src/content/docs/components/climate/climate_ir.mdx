@@ -278,13 +278,9 @@ climate:
   - `yaw1f`: the `yag` byte layout with the frame timing and follow-up message of YAW1F remotes. Try it when a
     unit with a YAW1F remote ignores `yag`.
 
-- **use_fahrenheit** (*Optional*, boolean): Ask the air conditioner to show its setpoint in
-  Fahrenheit on its own display. Home Assistant already shows whichever unit you have configured;
-  this controls what the unit itself displays, which otherwise reads Celsius. Defaults to `false`.
-
-  Verified on a `yx1ff` unit. Gree's temperature field holds only whole degrees Celsius plus a
-  half-degree flag, so each whole Fahrenheit degree is matched as closely as the protocol allows;
-  every degree from 61 °F to 86 °F is reachable exactly.
+- **use_fahrenheit** (*Optional*, boolean): Show the setpoint in Fahrenheit on the air conditioner's own display,
+  for every whole degree from 61 °F to 86 °F. This does not change the unit Home Assistant shows. Tested with the
+  `yx1ff` model. Defaults to `false`.
 
 ```yaml
 # Example configuration entry for climate only
@@ -294,7 +290,6 @@ climate:
     id: my_gree_ac
     sensor: room_temperature
     model: yan
-    use_fahrenheit: true
 ```
 
 Models `yx1ff` and `yac1fb9` also offer the `sleep` preset.
